@@ -9,9 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import seleniumdemo.SeleniumUtil;
 
 public class TheInternetDemo {
+	
+	static WebDriver driver = SeleniumUtil.getDriver();
+	static WebDriverWait wait = new WebDriverWait(driver, 5);
 
 	public static void main(String[] args) throws InterruptedException {
-		WebDriver driver = SeleniumUtil.getDriver();
 		driver.get("http://the-internet.herokuapp.com");
 		Thread.sleep(1000);
 		driver.findElement(By.linkText("Dynamic Controls")).click();
@@ -19,10 +21,10 @@ public class TheInternetDemo {
 		checkBoxBtn.click();
 		Thread.sleep(1000);
 		WebElement checkBox = driver.findElement(By.id("checkbox")).findElement(By.tagName("input"));
-		new WebDriverWait(driver, 5).until(ExpectedConditions.invisibilityOf(checkBox));
+		wait.until(ExpectedConditions.invisibilityOf(checkBox));
 		Thread.sleep(1000);
 		checkBoxBtn.click();
-		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
 		driver.findElement(By.id("checkbox")).click();
 	}
 
